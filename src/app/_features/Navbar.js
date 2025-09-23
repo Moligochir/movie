@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FormMovie } from "../_components/form-movie";
-export const PageOne = (props) => {
+export const Navbar = (props) => {
   return (
     <div className="flex w-full justify-between pl-20 pr-20">
       <div className="flex gap-2 text-[16px]">
