@@ -1,13 +1,19 @@
+import { HeroSlide } from "../_components/HeroSlide";
 export const HeroSection = (props) => {
+
   return (
-    <div>
-      <div className="flex items-center relative">
+    <div className="flex items-center relative">
         <img className="w-full h-full" src="./MovieWicked.svg" />
 
         <div className="w-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
-          <div className="w-[404px]">
-            <div className="">
-              <h1 className="text-[16px]">Now Playing:</h1>
+          <HeroSlide
+          name={"Wicked"}
+          rank={"6,9"}
+          descreption={"descreption"}
+          />
+          <div>
+            
+              {/* <h1 className="text-[16px]">Now Playing:</h1>
               <h2 className="text-[36px]"> Wicked</h2>
 
               <h3 className="text-[18px] flex text-[#71717A]">
@@ -25,8 +31,8 @@ export const HeroSection = (props) => {
               <button className="bg-[#F4F4F5] text-[#18181B] text-[14px] flex gap-2 pl-[16px] pr-[16px] pt-[8px] pb-[8px] rounded-[6px]">
                 <img src="./PlayVector.svg" />
                 Watch Trailer
-              </button>
-            </div>
+              </button> */}
+            
           </div>
           <div className="">
             <button className="bg-[#F4F4F5] flex justify-center items-center w-[40px] h-[40px] text-[16px] rounded-[100%] ">
@@ -37,12 +43,11 @@ export const HeroSection = (props) => {
             </button>
           </div>
         </div>
+         <div className="w-full h-full flex justify-center gap-2 items-end absolute pb-[37px]">
+        <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
+        <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
+        <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
       </div>
-      <div className="w-[100%] flex-row justify-center text-black rounded-[100%]">
-        <button className="w-[8px] h-[8px]"></button>
-        <button className="w-[8px] h-[8px]"></button>
-        <button className="w-[8px] h-[8px]"></button>
       </div>
-    </div>
   );
 };
