@@ -1,22 +1,38 @@
+import { MovieCardDb } from "../_components/MovieCardDb";
+import { MovieCard } from "../_components/MovieCard";
 export const MovieList = (props) => {
   return (
-    <div className="pt-[52px] pb-[32px]">
-      <div className="flex w-full text=[32px] justify-between  pl-20 pr-20">
-        <div className="w-[250px] h-[32px] rounded-[6px] bg-[#F4F4F5]"></div>
-        <div className="w-[165px] h-[36px] rounded-[6px] bg-[#F4F4F5]"></div>
-      </div>
-      <div className=" flex-row w-[229.73px] rounded-[8px] h-auto bg-[#D9D9D9]">
-        <img className=" h-[340px] " />
-        <div className="h-[95px] pl-2 justify-start">
-          <div className="flex gap-[8px]">
-            <img className="h-[18px]" src="./star.svg" />
-            <h1 className="text-[#71717A] pl-[4px]">
-              <span className="text-[#09090B]">6.9</span>/10
-            </h1>
-          </div>
-          Dear Santa
-        </div>
-      </div>
-    </div>
+    <div><MovieCard 
+      title={"Upcoming"}/></div>
+    // <div className="pt-[52px]  pl-20 pr-20 w-full h-full">
+      
+    //   <div className="flex w-full h-[32px] justify-between ">
+    //     <div className="w-[250px] h-[32px] rounded-[6px] bg-[#F4F4F5]"></div>
+    //     <button className="w-[165px] h-[36px] rounded-[6px] bg-[#F4F4F5]"></button>
+    //   </div>
+    //   <div className="flex w-1/5 pt-[32px] gap-[13%]">
+    //   <MovieCardDb rank={""} name={""} imageName={""}
+    //   />
+    //   <MovieCardDb rank={""} name={""} imageName={""}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   /></div>
+    //   <div className="flex w-1/5 pt-[32px] gap-[13%]">
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   <MovieCardDb rank={"6,9"} name={"Dear Santa"} imageName={"imageName"}
+    //   />
+    //   </div>
+    // </div>
   );
 };
