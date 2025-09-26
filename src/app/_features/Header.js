@@ -1,6 +1,6 @@
 export const Header = (props) => {
   return (
-    <div className="flex w-full justify-between pl-20 pr-20">
+    <div className="flex w-full justify-between pt-3 pl-20 pr-20">
       <div className="flex gap-2 text-[16px]">
         <img className="w-[20px]" src="./movieZ.svg" />
         <button className="text-[#4338CA]">MovieZ</button>

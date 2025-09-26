@@ -1,46 +1,66 @@
+"use client";
 import { HeroSlide } from "../_components/HeroSlide";
+import { useEffect, useState } from "react";
+const apiLink =
+  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzZiMzEwNzJlZDg5ODcwMzQxM2Y0NzkyYzZjZTdjYyIsIm5iZiI6MTczODAyNjY5NS44NCwic3ViIjoiNjc5ODJlYzc3MDJmNDkyZjQ3OGY2OGUwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.k4OF9yGrhA2gZ4VKCH7KLnNBB2LIf1Quo9c3lGF6toE",
+  },
+};
+
 export const HeroSection = (props) => {
+  const { title } = props;
+  const [movies, setMovies] = useState([]);
+  const getData = async () => {
+    const data = await fetch(apiLink, options);
+    const jsonData = await data.json();
+    setMovies(jsonData.results);
+  };
+
+  console.log(movies, "minii data");
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
-    <div className="flex items-center relative">
-      <img className="w-full h-full bg-[#F4F4F5]" src="./MovieWicked.svg" />
-
-      <div className="w-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
-        <HeroSlide name={"Wicked"} rank={"6,9"} descreption={"descreption"} />
-        <div>
-          {/* <h1 className="text-[16px]">Now Playing:</h1>
-              <h2 className="text-[36px]"> Wicked</h2>
-
-              <h3 className="text-[18px] flex text-[#71717A]">
-                <img src="./star.svg" />
-                <span className="text-[#FAFAFA] pl-[4px]">6.9</span>
-                /10
-              </h3>
-
-              <p className="text-[12px] w-[302px] pb-[16px] pt-[16px]">
-                Elphaba, a misunderstood young woman because of her green skin,
-                and Glinda, a popular girl, become friends at Shiz University in
-                the Land of Oz. After an encounter with the Wonderful Wizard of
-                Oz, their friendship reaches a crossroads.{" "}
-              </p>
-              <button className="bg-[#F4F4F5] text-[#18181B] text-[14px] flex gap-2 pl-[16px] pr-[16px] pt-[8px] pb-[8px] rounded-[6px]">
-                <img src="./PlayVector.svg" />
-                Watch Trailer
-              </button> */}
-        </div>
-        <div className="">
-          <button className="bg-[#F4F4F5] flex justify-center items-center w-[40px] h-[40px] text-[16px] rounded-[100%] ">
+    <div>
+      {movies.slice(0, 1).map((movie, index) => {
+        return (
+          <div className="flex items-center relative pt-5">
             <img
-              className="text-[16px] w-[4px] h-[8px]"
-              src="./RightVector.svg"
+              className="w-full h-full bg-[#F4F4F5]"
+              src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
             />
-          </button>
-        </div>
-      </div>
-      <div className="w-full h-full flex justify-center gap-2 items-end absolute pb-[37px]">
-        <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
-        <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
-        <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
-      </div>
+
+            <div className="w-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
+              <HeroSlide
+                key={index}
+                name={movie.title}
+                rank={movie.vote_average}
+                description={movie.overview}
+              />
+              <div>
+                <button className="bg-[#F4F4F5] flex justify-center items-center w-[40px] h-[40px] text-[16px] rounded-[100%] ">
+                  <img
+                    className="text-[16px] w-[4px] h-[8px]"
+                    src="./RightVector.svg"
+                  />
+                </button>
+              </div>
+            </div>
+            <div className="w-full h-full flex justify-center gap-2 items-end absolute pb-[37px]">
+              <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
+              <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
+              <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
