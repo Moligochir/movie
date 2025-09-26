@@ -7,12 +7,12 @@ import { UpcomingMoviesList } from "./_features/UpcomingMoviesList";
 
 export default function Home() {
   return (
-    <div className="w-[1440px] m-auto">
+    <div className="">
       {<Header />}
       {<HeroSection />}
-      {/* {<UpcomingMoviesList />}
+      {<UpcomingMoviesList />}
       {<PopularMoviesList />}
-      {<TopRatedMoviesList />} */}
+      {<TopRatedMoviesList />}
       {/* <MovieCard title={"Upcoming"} />
       <MovieCard title={"Popular"} />
       <MovieCard title={"Top Rated"} /> */}

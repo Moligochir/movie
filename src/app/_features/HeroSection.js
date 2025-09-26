@@ -21,22 +21,21 @@ export const HeroSection = (props) => {
     const jsonData = await data.json();
     setMovies(jsonData.results);
   };
-
-  console.log(movies, "minii data");
-
   useEffect(() => {
     getData();
   }, []);
   return (
     <div>
       {movies.slice(0, 1).map((movie, index) => {
-        return (
-          <div className="flex items-center relative pt-5">
-            <img
+        
+        return (<div className="">
+          <div id="scroll" className="flex w-full h-full items-center relative pt-5">
+            
+              <img
               className="w-full h-full bg-[#F4F4F5]"
               src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
             />
-
+            
             <div className="w-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
               <HeroSlide
                 key={index}
@@ -57,8 +56,9 @@ export const HeroSection = (props) => {
               <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
               <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
               <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
-            </div>
+            </div></div>
           </div>
+          
         );
       })}
     </div>

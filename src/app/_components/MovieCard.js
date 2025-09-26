@@ -34,8 +34,8 @@ export const MovieCard = (props) => {
         <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
           {title}
         </div>
-        <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
-          see more <img src="./rightArrow.svg" />
+        <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center bg-[#F4F4F5]">
+          see more <img className="rounded-t-[6px]" src="./rightArrow.svg" />
         </button>
       </div>
       <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
@@ -45,7 +45,7 @@ export const MovieCard = (props) => {
               key={index}
               rank={movie.vote_average}
               name={movie.title}
-              imageName={""}
+              
             />
           );
         })}
