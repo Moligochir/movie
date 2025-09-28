@@ -1,8 +1,8 @@
 export const Footer = (props) => {
     return (
-        <div className="flex w-full pl-20 pr-20 pt-10 pb-10 bg-[#4338CA] h-[280px] justify-between text-[#FAFAFA]">
+        <div className="pt-[52px]"><div className="flex w-full pl-20 pr-20 pt-10 pb-10 bg-[#4338CA] h-[280px] justify-between text-[#FAFAFA]">
             <div className="flex">
-                <div className="">
+                <div>
                     <div className="flex gap-2">
                         <img className="w-[20px]" src="./WhiteMovieZ.svg" />
                         <button className="">MovieZ</button>
@@ -35,10 +35,7 @@ export const Footer = (props) => {
                                 </div>
                             </div>
                         </div>
-                    
-                    
-                    
-            
-        </div>
+                    </div>
+                    </div>
     )
 }
