@@ -4,6 +4,7 @@ import { HeroSection } from "./_features/HeroSection";
 import { PopularMoviesList } from "./_features/PopularMoviesList";
 import { TopRatedMoviesList } from "./_features/TopRatedMoviesList";
 import { UpcomingMoviesList } from "./_features/UpcomingMoviesList";
+import {Footer} from "./_features/Footer";
 
 export default function Home() {
   return (
@@ -13,10 +14,7 @@ export default function Home() {
       {<UpcomingMoviesList />}
       {<PopularMoviesList />}
       {<TopRatedMoviesList />}
-      {/* <MovieCard title={"Upcoming"} />
-      <MovieCard title={"Popular"} />
-      <MovieCard title={"Top Rated"} /> */}
-      {/* {<Footer />} */}
+      {<Footer />}
     </div>
   );
 }
