@@ -1,9 +1,7 @@
 "use client";
 import { MovieCardDb } from "../_components/MovieCardDb";
-import { useEffect, useState } from "react";
-
-const apiLink =
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+import { use, useEffect, useState } from "react";
+import Link from "next/link";
 
 const options = {
   method: "GET",
@@ -15,7 +13,9 @@ const options = {
 };
 
 export const PopularMoviesList = (props) => {
-  const { title } = props;
+  const [page, setPage] = useState(1);
+  const apiLink = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
+  const { movieId } = props;
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
@@ -23,20 +23,20 @@ export const PopularMoviesList = (props) => {
     setMovies(jsonData.results);
   };
 
-  console.log(movies, "minii data");
-
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
   return (
     <div className="pt-[52px] pl-20 pr-20 w-full h-full ">
       <div className="flex w-full h-[32px] justify-between ">
         <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
           Popular
         </div>
-        <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
-          see more <img src="./rightArrow.svg" />
-        </button>
+        <Link href={"/popular"}>
+          <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
+            see more <img src="./rightArrow.svg" />
+          </button>
+        </Link>
       </div>
       <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
         {movies.slice(0, 10).map((movie, index) => {
@@ -46,6 +46,7 @@ export const PopularMoviesList = (props) => {
               rank={movie.vote_average}
               name={movie.title}
               imageName={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              movieId={movie.id}
             />
           );
         })}

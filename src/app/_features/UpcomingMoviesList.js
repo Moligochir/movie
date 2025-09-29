@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { MovieCardDb } from "../_components/MovieCardDb";
 import { useEffect, useState } from "react";
 
@@ -34,9 +35,11 @@ export const UpcomingMoviesList = (props) => {
         <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
           Upcoming
         </div>
-        <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
-          see more <img src="./rightArrow.svg" />
-        </button>
+        <Link href={"/upcoming"}>
+          <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
+            see more <img src="./rightArrow.svg" />
+          </button>
+        </Link>
       </div>
       <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
         {movies.slice(0, 10).map((movie, index) => {
@@ -46,6 +49,7 @@ export const UpcomingMoviesList = (props) => {
               rank={movie.vote_average}
               name={movie.title}
               imageName={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              movieId={movie.id}
             />
           );
         })}
