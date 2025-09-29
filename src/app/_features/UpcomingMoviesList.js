@@ -1,10 +1,7 @@
 "use client";
 import Link from "next/link";
 import { MovieCardDb } from "../_components/MovieCardDb";
-import { useEffect, useState } from "react";
-
-const apiLink =
-  "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
+import { use, useEffect, useState } from "react";
 
 const options = {
   method: "GET",
@@ -16,7 +13,9 @@ const options = {
 };
 
 export const UpcomingMoviesList = (props) => {
-  const { title } = props;
+  const [page, setPage] = useState(1);
+  const apiLink =
+  `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`;
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
@@ -24,11 +23,9 @@ export const UpcomingMoviesList = (props) => {
     setMovies(jsonData.results);
   };
 
-  console.log(movies, "minii data");
-
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
   return (
     <div className="pt-[52px] pl-20 pr-20 w-full h-full ">
       <div className="flex w-full h-[32px] justify-between ">

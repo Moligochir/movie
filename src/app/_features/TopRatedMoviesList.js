@@ -1,10 +1,7 @@
 "use client";
 import { MovieCardDb } from "../_components/MovieCardDb";
-import { useEffect, useState } from "react";
+import {use, useEffect, useState } from "react";
 import Link from "next/link";
-
-const apiLink =
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 
 const options = {
   method: "GET",
@@ -16,7 +13,8 @@ const options = {
 };
 
 export const TopRatedMoviesList = (props) => {
-  const { title } = props;
+  const [page, setPage] = useState(1);
+  const apiLink = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`;
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);

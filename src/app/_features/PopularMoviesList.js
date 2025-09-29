@@ -15,7 +15,6 @@ const options = {
 export const PopularMoviesList = (props) => {
   const [page, setPage] = useState(1);
   const apiLink = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
-  const { movieId } = props;
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
