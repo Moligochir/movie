@@ -14,7 +14,7 @@ const options = {
 };
 
 export const HeroSection = (props) => {
-  const { title } = props;
+  
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);

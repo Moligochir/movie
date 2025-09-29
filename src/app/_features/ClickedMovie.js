@@ -13,25 +13,27 @@ const options = {
 export const ClickedMovie = (props) => {
     const param = useParams()
      const {id} = param;
+    
      const apiLink = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
-   
+      const [movies, setMovies] = useState([]);
      const getData = async () => {
        const data = await fetch(apiLink, options);
        const jsonData = await data.json();
-    //    setMovies(jsonData.results);
-       console.log(jsonData);
+       setMovies(jsonData.results);
        
+       console.log("this is id", id);
        
      };
        useEffect(() => {
        getData();
      }, [id]);
-   
+     
      if(!id) {
        return(
          <div>Something wrong!!!</div>
        )
      } 
+     
     return (
         <div>
         </div>
