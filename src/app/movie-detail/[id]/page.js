@@ -1,5 +1,5 @@
 "use client";
-import {useParams} from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { Header } from "@/app/_features/Header";
 import { Footer } from "@/app/_features/Footer";
@@ -25,7 +25,7 @@ export default function MovieDetail() {
   //   const jsonData = await data.json();
   //   // setMovies(jsonData.results);
   //   console.log(jsonData);
-    
+
   // };
   //   useEffect(() => {
   //   getData();
@@ -36,8 +36,11 @@ export default function MovieDetail() {
   //     <div>Something wrong!!!</div>
   //   )
   // }
-  return <div>{<Header />}
-              {<ClickedMovie />}
-              {<Footer />}
-            </div>;
+  return (
+    <div className="w-[1440px]">
+      <Header />
+      <ClickedMovie />
+      <Footer />
+    </div>
+  );
 }
