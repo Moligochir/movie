@@ -1,9 +1,8 @@
 "use client";
 import { MovieCardDb } from "../_components/MovieCardDb";
-import { useEffect, useState } from "react";
-
-const apiLink =
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
+import { use, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 
 const options = {
   method: "GET",
@@ -14,8 +13,11 @@ const options = {
   },
 };
 
-export const MovieCard = (props) => {
-  const { title } = props;
+export const SimillarMovieList = (props) => {
+  const param = useParams();
+    const { id } = param;
+  const [page, setPage] = useState(1);
+  const apiLink = `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=${page}`;
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
@@ -25,25 +27,28 @@ export const MovieCard = (props) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
   return (
-    <div className="pt-[52px] pl-20 pr-20 w-full h-full ">
+    <div className="pt-[32px] pl-45 pr-45 w-full h-full pb-[112px] ">
       <div className="flex w-full h-[32px] justify-between ">
-        <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
-          {title}
+        <div className="flex w-[250px] text-[24px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
+          More like this
         </div>
-        <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center bg-[#F4F4F5]">
-          see more <img className="rounded-t-[6px]" src="./rightArrow.svg" />
-        </button>
+        <Link href={"/simillar"}>
+          <button className="w-[165px] h-[36px] text-[14px] flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
+            see more <img src="/rightArrow.svg" />
+          </button>
+        </Link>
       </div>
       <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
-        {movies.slice(0, 10).map((movie, index) => {
+        {movies.slice(0, 5).map((movie, index) => {
           return (
             <MovieCardDb
               key={index}
               rank={movie.vote_average}
               name={movie.title}
-              
+              imageName={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              movieId={movie.id}
             />
           );
         })}

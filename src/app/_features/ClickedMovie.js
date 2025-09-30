@@ -1,6 +1,8 @@
+"use client"
 import { HeroSlide } from "../_components/HeroSlide";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { MovieCardDb } from "../_components/MovieCardDb";
 
 const options = {
   method: "GET",
@@ -16,15 +18,18 @@ export const ClickedMovie = (props) => {
 
   const apiLink = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
   const [movie, setMovie] = useState();
+  
   const apiLinkDirector = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
   const [director, setDirector] = useState();
+  
+
   const getData = async () => {
     const data = await fetch(apiLink, options);
     const jsonData = await data.json();
-
+    console.log("sadada",jsonData);
     setMovie(jsonData);
   };
-
+  
   const getDataDirector = async () => {
     const dataDirector = await fetch(apiLinkDirector, options);
     const jsonDataDirector = await dataDirector.json();
@@ -88,7 +93,7 @@ export const ClickedMovie = (props) => {
       <div className="w-full flex pl-45 pr-45  pt-[32px] gap-[12px]">
         {movie?.genres.map((genre, index) => {
           return (
-            <button className="text-[#09090B] border-1 rounded-full pl-[10px] pr-[10px]">
+            <button key={index} className="text-[#09090B] border-1 rounded-full pl-[10px] pr-[10px]">
               {genre.name}
             </button>
           );
@@ -98,15 +103,28 @@ export const ClickedMovie = (props) => {
         <h1 className="text-[16px]">{movie?.overview}</h1>
       </div>
       <div className="w-full flex pl-45 pr-45  pt-[20px] gap-[12px]">
-        <h1>
+        <h1 className="font-bold text-4">
           Director
-          <span>{director?.crew[0]?.name}</span>
+          <span className="px-[120px] font-thin">{director?.crew[0]?.name}</span>
         </h1>
       </div>
-
-      <div></div>
-      <h1></h1>
-      <div></div>
+      <div className="w-full flex pl-45 pr-45  pt-[20px] gap-[12px]">
+        <h1 className="font-bold text-4 ">
+          Writers
+          <span className="px-[120px] font-thin">{director?.crew[1]?.name}</span>
+        </h1>
+      </div>
+      <div className="w-full flex pl-45 pr-45  pt-[20px] gap-[12px]">
+        <h1 className="font-bold text-4 ">
+          Stars
+          <span className="px-[120px] font-thin">{director?.crew[2]?.name}</span>
+        </h1>
+      </div>
+      
+      <div>
+    
+      
+      </div>
     </div>
   );
 };

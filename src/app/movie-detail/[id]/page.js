@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Header } from "@/app/_features/Header";
 import { Footer } from "@/app/_features/Footer";
 import { ClickedMovie } from "@/app/_features/ClickedMovie";
+import { SimillarMovieList } from "@/app/_features/SimiliarMovieList";
 // import {} from "@/app/public"
 
 // const options = {
@@ -40,6 +41,7 @@ export default function MovieDetail() {
     <div className="w-[1440px]">
       <Header />
       <ClickedMovie />
+      <SimillarMovieList />
       <Footer />
     </div>
   );

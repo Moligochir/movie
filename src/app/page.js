@@ -8,7 +8,7 @@ import { Footer } from "./_features/Footer";
 
 export default function Home() {
   return (
-    <div className="w-[100%]">
+    <div className="w-[1440px]">
       {<Header />}
       {<HeroSection />}
       {<UpcomingMoviesList />}
