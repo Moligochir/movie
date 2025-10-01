@@ -15,7 +15,7 @@ const options = {
 
 export const SimillarMovieList = (props) => {
   const param = useParams();
-    const { id } = param;
+  const { id } = param;
   const [page, setPage] = useState(1);
   const apiLink = `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=${page}`;
   const [movies, setMovies] = useState([]);
@@ -34,14 +34,14 @@ export const SimillarMovieList = (props) => {
         <div className="flex w-[250px] text-[24px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
           More like this
         </div>
-        <Link href={"/simillar"}>
+        <Link href={`/simillar/${id}`}>
           <button className="w-[165px] h-[36px] text-[14px] flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
             see more <img src="/rightArrow.svg" />
           </button>
         </Link>
       </div>
       <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
-        {movies.slice(0, 5).map((movie, index) => {
+        {movies.slice(0, isDetails ? 5 : 10).map((movie, index) => {
           return (
             <MovieCardDb
               key={index}

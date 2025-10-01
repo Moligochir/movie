@@ -14,7 +14,6 @@ const options = {
 };
 
 export const HeroSection = (props) => {
-  
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
@@ -28,13 +27,13 @@ export const HeroSection = (props) => {
     <div>
       {movies.slice(0, 1).map((movie, index) => {
         return (
-          <div key={index} className="">
+          <div key={index} className="relative">
             <div
               id="scroll"
               className="flex w-full h-full items-center relative pt-5"
             >
               <img
-                className="w-full h-full bg-[#F4F4F5]"
+                className="w-full h-full bg-[#F4F4F5] relative"
                 src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
               />
 

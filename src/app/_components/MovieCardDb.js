@@ -3,7 +3,7 @@ export const MovieCardDb = (props) => {
   const { rank, name, imageName, movieId } = props;
   const router = useRouter();
   const HandleMovieClick = () => {
-    router.push(`movie-detail/${movieId}`);
+    router.replace(`/movie-detail/${movieId}`);
   };
 
   return (
