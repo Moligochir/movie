@@ -1,6 +1,6 @@
 "use client";
 import { MovieCardDb } from "../_components/MovieCardDb";
-import {use, useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Link from "next/link";
 
 const options = {
@@ -12,7 +12,7 @@ const options = {
   },
 };
 
-export const TopRatedMoviesList = (props) => {
+export const TopRatedMoviesList = ({ isDetails }) => {
   const [page, setPage] = useState(1);
   const apiLink = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`;
   const [movies, setMovies] = useState([]);
@@ -33,14 +33,14 @@ export const TopRatedMoviesList = (props) => {
         <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
           Top Rated
         </div>
-        <Link href={"toprated"}>
+        <Link href={"toprated"} className={`${isDetails ? "hidden" : ""}`}>
           <button className="w-[165px] h-[36px] text-5 flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
             see more <img src="./rightArrow.svg" />
           </button>
         </Link>
       </div>
       <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
-        {movies.slice(0, 10).map((movie, index) => {
+        {movies.slice(0, isDetails ? 20 : 10).map((movie, index) => {
           return (
             <MovieCardDb
               key={index}

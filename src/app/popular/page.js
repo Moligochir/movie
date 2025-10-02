@@ -6,9 +6,9 @@ import { PopularMoviesList } from "../_features/PopularMoviesList";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="w-[1440px]">
       {<Header />}
-      {<PopularMoviesList />}
+      {<PopularMoviesList isDetails={true} />}
       {<Footer />}
     </div>
   );

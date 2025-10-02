@@ -5,16 +5,18 @@ import { PopularMoviesList } from "./_features/PopularMoviesList";
 import { TopRatedMoviesList } from "./_features/TopRatedMoviesList";
 import { UpcomingMoviesList } from "./_features/UpcomingMoviesList";
 import { Footer } from "./_features/Footer";
+import { Genre } from "./_components/Genre";
 
 export default function Home() {
   return (
     <div className="w-[1440px]">
-      {<Header />}
+      {/* {<Header />}
       {<HeroSection />}
       {<UpcomingMoviesList />}
       {<PopularMoviesList />}
       {<TopRatedMoviesList />}
-      {<Footer />}
+      {<Footer />} */}
+      <Genre />
     </div>
   );
 }

@@ -41,7 +41,7 @@ export default function MovieDetail() {
     <div className="w-[1440px]">
       <Header />
       <ClickedMovie />
-      <SimillarMovieList />
+      <SimillarMovieList isDetails={false} />
       <Footer />
     </div>
   );

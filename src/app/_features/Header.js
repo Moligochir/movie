@@ -1,10 +1,21 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export const Header = (props) => {
+  const router = useRouter();
+  const handleMovieZButton = () => {
+    router.push(`/`);
+  };
   return (
     <div>
       <div className="flex w-full justify-between pt-3 pl-20 pr-20 relative">
-        <div className="flex gap-2 text-[16px]">
-          <img className="w-[20px]" src="/movieZ.svg" />
-          <button className="text-[#4338CA]">MovieZ</button>
+        <div
+          className="flex gap-2 text-[16px] cursor-pointer"
+          onClick={handleMovieZButton}
+        >
+          <img className="w-[20px] " src="/movieZ.svg " />
+          <button className="text-[#4338CA] cursor-pointer">MovieZ</button>
         </div>
         <div className="flex gap-6 text-[14px]">
           <div className="flex gap-2 text-[#18181B] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">

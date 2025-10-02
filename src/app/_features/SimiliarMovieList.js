@@ -1,8 +1,9 @@
 "use client";
-import { MovieCardDb } from "../_components/MovieCardDb";
+
 import { use, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { MovieCardDb } from "../_components/MovieCardDb";
 
 const options = {
   method: "GET",
@@ -13,7 +14,7 @@ const options = {
   },
 };
 
-export const SimillarMovieList = (props) => {
+export const SimillarMovieList = ({ isDetails }) => {
   const param = useParams();
   const { id } = param;
   const [page, setPage] = useState(1);
@@ -28,30 +29,36 @@ export const SimillarMovieList = (props) => {
   useEffect(() => {
     getData();
   }, [page]);
+
   return (
-    <div className="pt-[32px] pl-45 pr-45 w-full h-full pb-[112px] ">
-      <div className="flex w-full h-[32px] justify-between ">
-        <div className="flex w-[250px] text-[24px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
-          More like this
+    <div className={`${isDetails ? "pl-20 pr-20" : "pl-45 pr-45"}`}>
+      <div className="pt-[32px] w-full h-full pb-[112px] ">
+        <div className="flex w-full h-[32px] justify-between ">
+          <div className="flex w-[250px] text-[24px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
+            More like this
+          </div>
+          <Link
+            href={`/simillar/${id}`}
+            className={`${isDetails ? "hidden" : ""}`}
+          >
+            <button className="w-[165px] h-[36px] text-[14px] flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
+              see more <img src="/rightArrow.svg" />
+            </button>
+          </Link>
         </div>
-        <Link href={`/simillar/${id}`}>
-          <button className="w-[165px] h-[36px] text-[14px] flex  gap-2 items-center justify-center rounded-[6px] bg-[#F4F4F5]">
-            see more <img src="/rightArrow.svg" />
-          </button>
-        </Link>
-      </div>
-      <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
-        {movies.slice(0, isDetails ? 5 : 10).map((movie, index) => {
-          return (
-            <MovieCardDb
-              key={index}
-              rank={movie.vote_average}
-              name={movie.title}
-              imageName={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-              movieId={movie.id}
-            />
-          );
-        })}
+        <div className="grid grid-cols-5 pt-[32px] gap-[32px]">
+          {movies.slice(0, isDetails ? 20 : 5).map((movie, index) => {
+            return (
+              <MovieCardDb
+                key={index}
+                rank={movie.vote_average}
+                name={movie.title}
+                imageName={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                movieId={movie.id}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -6,9 +6,9 @@ import { TopRatedMoviesList } from "../_features/TopRatedMoviesList";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="w-[1440px]">
       {<Header />}
-      {<TopRatedMoviesList />}
+      {<TopRatedMoviesList isDetails={true} />}
       {<Footer />}
     </div>
   );

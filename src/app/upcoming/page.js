@@ -6,9 +6,9 @@ import { NextPageButton } from "../_features/NextPageButton";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="w-[1440px]">
       {<Header />}
-      {<UpcomingMoviesList />}
+      {<UpcomingMoviesList isDetails={true} />}
       {<NextPageButton />}
       {<Footer />}
     </div>

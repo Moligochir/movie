@@ -4,10 +4,10 @@ import { SimillarMovieList } from "@/app/_features/SimiliarMovieList";
 
 export default function Home() {
   return (
-    <div className="">
-      {<Header />}
-      {<SimillarMovieList isDetails={true} />}
-      {<Footer />}
+    <div className="w-[1440px]">
+      <Header />
+      <SimillarMovieList isDetails={true} />
+      <Footer />
     </div>
   );
 }
