@@ -25,23 +25,23 @@ export const Genre = () => {
 
   return (
     <div className="w-full flex justify-center pt-[52px] ">
-      <div className="w-[577px] pl-5 pt-5 border-1 rounded-[8px]">
+       <div className="">
+        <div className="w-[577px] pl-5 pt-5 border-1 rounded-[8px]">
         <div>Genres</div>
-        <h1 className="pl-1">See lists of movies by genre</h1>
-        <div className="">
-          <div className="flex gap-4 w-[577px]">
+        <h1 className="pl-0">See lists of movies by genre</h1>
+       
+          <div className="flex h-5 border-1 gap-[12px]">
             {genre.map((item, index) => {
+              console.log(item.name)
               return (
-                <button
-                  key={index}
-                  className="text-3 text-bold border-1 rounded-full pl-[10px] pr-[10px]"
-                >
-                  {item.name}
-                </button>
+                <div key={index}
+                  className=" ">
+                    <button className="flex w-full items-center gap-1 h-20px ">{item.name}<img className="w-1 h-2" src="/RightVector.svg"/></button>
+                    </div>
               );
             })}
-          </div>
-        </div>
+          </div> 
+        </div> 
       </div>
     </div>
   );
