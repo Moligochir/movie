@@ -33,7 +33,7 @@ export const HeroSection = (props) => {
               className="flex w-full h-full items-center relative pt-5"
             >
               <img
-                className="w-full h-full bg-[#F4F4F5] relative"
+                className="w-full h-full bg-[#F4F4F5] relative z-[-1]"
                 src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
               />
 

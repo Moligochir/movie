@@ -1,8 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { GenreButton } from "../_components/GenreButton";
+import { useState } from "react";
 
 export const Header = (props) => {
+  const [isShow, setIsShow] = useState(false);
+
+  const handleGenreButton = () => {
+    setIsShow(!isShow);
+  };
   const router = useRouter();
   const handleMovieZButton = () => {
     router.push(`/`);
@@ -17,14 +24,24 @@ export const Header = (props) => {
           <img className="w-[20px] " src="/movieZ.svg " />
           <button className="text-[#4338CA] cursor-pointer">MovieZ</button>
         </div>
-        <div className="flex gap-6 text-[14px]">
-          <div className="flex gap-2 text-[#18181B] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
-            <img className="w-[16px]" src="/Genre.svg" />
-            <button className="">Genre</button>
+        <div className="flex gap-6 text-[14px] ">
+          <div className=" text-[#18181B] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
+            <div>
+              <div
+                className="flex gap-2 cursor-pointer"
+                onClick={handleGenreButton}
+              >
+                <img className="w-[16px]" src="/Genre.svg" />
+                <button className="">Genre</button>
+              </div>
+              {isShow && <GenreButton />}
+            </div>
           </div>
-          <div className="flex gap-2 text-[#09090B] w-[379px] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
-            <img className="w-[16px] text-[#09090B]" src="/search.svg" />
-            <input className="text-[#x09090B]" placeholder="Search.."></input>
+          <div>
+            <div className="flex gap-2 text-[#09090B] w-[379px] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
+              <img className="w-[16px] text-[#09090B]" src="/search.svg" />
+              <input className="text-[#x09090B]" placeholder="Search.."></input>
+            </div>
           </div>
         </div>
         <button className="text-[#18181B] border border-[#E4E4E7] rounded-[8px] p-2">
