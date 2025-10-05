@@ -1,6 +1,6 @@
 export const NextPageButton = (props) => {
   return (
-    <div className="flex w-full">
+    <div className="flex justify-end w-full">
       <div>
         <button>Previous</button>
       </div>

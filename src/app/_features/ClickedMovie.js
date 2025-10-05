@@ -79,7 +79,7 @@ export const ClickedMovie = (props) => {
         </div>
         <div className="flex items-end relative ">
           <img
-            className="h-[428px]"
+            className="h-[428px] z-[-1]"
             src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           />
           <h1 className="w-full flex absolute items-center  pb-6 pl-6 gap-2 text-white">

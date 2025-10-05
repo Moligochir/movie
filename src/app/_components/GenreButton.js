@@ -3,6 +3,7 @@
 import { use, useEffect, useState } from "react";
 import { GenreMovieList } from "../_features/GenreMovieList";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const options = {
   method: "GET",
@@ -16,22 +17,21 @@ export const GenreButton = () => {
   const [genre, setGenre] = useState([]);
   const apiLink = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
   const router = useRouter();
-  const HandleGenreClick = () => {
-    router.push(`/genre/${genre.id}`);
+  const HandleGenreButtonClick = () => {
   };
   const getData = async () => {
     const data = await fetch(apiLink, options);
     const jsonData = await data.json();
-
     setGenre(jsonData.genres);
-  };
+  }
+  
 
   useEffect(() => {
     getData();
   }, []);
 
   return (
-    <div className="w-full flex absolute ">
+    <div className="w-full flex absolute z-[1]">
       <div className="">
         <div className="w-[577px] bg-white pl-5 pt-5 border-1 border-[#E4E4E7] rounded-[8px]">
           <div className="font-black text-[24px]">Genres</div>
@@ -43,19 +43,17 @@ export const GenreButton = () => {
           </div>
           <div className="flex flex-wrap gap-[16px] p-4">
             {genre.map((item, index) => {
-              console.log(item.name);
               return (
-                <div
-                  onClick={HandleGenreClick}
-                  key={index}
-                  className=" grid-cols-5 border-1 font-semibold text-[12px] h-[20px] rounded-full"
+                <Link key={index} href={`/genre/${item.id}`}><div
+                  className="  grid-cols-5 border-1 font-semibold border-[#E4E4E7] text-[12px] h-[20px] rounded-full"
                 >
-                  <button className="w-full flex items-center pl-2.5 pr-2 cursor-pointer gap-1 ">
+                  <button className="w-full cursor-pointer flex items-center pl-2.5 pr-2  gap-1 "
+                  onClick={HandleGenreButtonClick}>
                     {item.name}
-                    <img className="w-1 h-2" src="/RightVector.svg" />
+                    <img className="w-1 h-2" src="/RightVector.svg " />
                   </button>
-                </div>
-              );
+                </div></Link>
+              );  
             })}
           </div>
         </div>

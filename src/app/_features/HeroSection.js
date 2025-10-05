@@ -23,17 +23,17 @@ export const HeroSection = (props) => {
   useEffect(() => {
     getData();
   }, []);
+  
   return (
     <div>
       {movies.slice(0, 1).map((movie, index) => {
         return (
           <div key={index} className="relative">
             <div
-              id="scroll"
-              className="flex w-full h-full items-center relative pt-5"
+              className="flex w-full h-full  items-center  pt-5"
             >
               <img
-                className="w-full h-full bg-[#F4F4F5] relative z-[-1]"
+                className="w-[1440px] h-full z-[-1] relative "
                 src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
               />
 

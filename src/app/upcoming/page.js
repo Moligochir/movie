@@ -9,7 +9,6 @@ export default function Home() {
     <div className="w-[1440px]">
       {<Header />}
       {<UpcomingMoviesList isDetails={true} />}
-      {<NextPageButton />}
       {<Footer />}
     </div>
   );
