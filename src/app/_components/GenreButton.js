@@ -29,7 +29,7 @@ export const GenreButton = () => {
   }, []);
 
   return (
-    <div className="w-full flex absolute z-[1]">
+    <div className="w-full flex absolute z-[2]">
       <div className="">
         <div className="w-[577px] bg-white pl-5 pt-5 border-1 border-[#E4E4E7] rounded-[8px]">
           <div className="font-black text-[24px]">Genres</div>

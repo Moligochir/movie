@@ -1,9 +1,11 @@
 "use client";
 import { HeroSlide } from "../_components/HeroSlide";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 const apiLink =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-
+  
+  
 const options = {
   method: "GET",
   headers: {
@@ -14,6 +16,10 @@ const options = {
 };
 
 export const HeroSection = (props) => {
+  const param = useParams();
+    const { id } = param;
+  
+    const apiLinkMovieTrailer = "https://api.themoviedb.org/3/movie/${id}/videos?language=en-US"
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
