@@ -23,19 +23,22 @@ export const HeroSection = (props) => {
   useEffect(() => {
     getData();
   }, []);
-  
+
   return (
     <div>
       {movies.slice(0, 1).map((movie, index) => {
         return (
           <div key={index} className="relative">
-            <div
-              className="flex w-full h-full  items-center  pt-5"
-            >
-              <img
-                className="w-[1440px] h-full z-[-1] relative "
-                src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-              />
+            <div className="flex justify-center w-full ">
+              <div className="w-[997px] h-[561px] pt-20 bg-amber-50 z-[1] absolute"></div>
+            </div>
+            <div className="flex w-full h-full  items-center  pt-5">
+              <div>
+                <img
+                  className="w-[1440px] h-full z-[-1] relative "
+                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                />
+              </div>
 
               <div className="w-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
                 <HeroSlide

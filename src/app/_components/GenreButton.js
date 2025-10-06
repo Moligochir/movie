@@ -17,14 +17,12 @@ export const GenreButton = () => {
   const [genre, setGenre] = useState([]);
   const apiLink = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
   const router = useRouter();
-  const HandleGenreButtonClick = () => {
-  };
+
   const getData = async () => {
     const data = await fetch(apiLink, options);
     const jsonData = await data.json();
     setGenre(jsonData.genres);
-  }
-  
+  };
 
   useEffect(() => {
     getData();
@@ -44,16 +42,15 @@ export const GenreButton = () => {
           <div className="flex flex-wrap gap-[16px] p-4">
             {genre.map((item, index) => {
               return (
-                <Link key={index} href={`/genre/${item.id}`}><div
-                  className="  grid-cols-5 border-1 font-semibold border-[#E4E4E7] text-[12px] h-[20px] rounded-full"
-                >
-                  <button className="w-full cursor-pointer flex items-center pl-2.5 pr-2  gap-1 "
-                  onClick={HandleGenreButtonClick}>
-                    {item.name}
-                    <img className="w-1 h-2" src="/RightVector.svg " />
-                  </button>
-                </div></Link>
-              );  
+                <Link key={index} href={`/genre/${item.id}`}>
+                  <div className="  grid-cols-5 border-1 font-semibold border-[#E4E4E7] text-[12px] h-[20px] rounded-full">
+                    <button className="w-full cursor-pointer flex items-center pl-2.5 pr-2  gap-1 ">
+                      {item.name}
+                      <img className="w-1 h-2" src="/RightVector.svg " />
+                    </button>
+                  </div>
+                </Link>
+              );
             })}
           </div>
         </div>
