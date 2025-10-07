@@ -1,11 +1,8 @@
 "use client";
-import { HeroSlide } from "../_components/HeroSlide";
 import { useParams } from "next/navigation";
+import { HeroSlide } from "../_components/HeroSlide";
 import { useEffect, useState } from "react";
-const apiLink =
-  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-  
-  
+
 const options = {
   method: "GET",
   headers: {
@@ -16,14 +13,15 @@ const options = {
 };
 
 export const HeroSection = (props) => {
-  const param = useParams();
-    const { id } = param;
-  
-    const apiLinkMovieTrailer = "https://api.themoviedb.org/3/movie/${id}/videos?language=en-US"
+  const apiLink =
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
   const [movies, setMovies] = useState([]);
   const getData = async () => {
     const data = await fetch(apiLink, options);
     const jsonData = await data.json();
+    setMovies(jsonData.results);
+
     setMovies(jsonData.results);
   };
   useEffect(() => {
@@ -32,12 +30,9 @@ export const HeroSection = (props) => {
 
   return (
     <div>
-      {movies.slice(0, 1).map((movie, index) => {
+      {movies.slice(0, 3).map((movie, index) => {
         return (
           <div key={index} className="relative">
-            <div className="flex justify-center w-full ">
-              <div className="w-[997px] h-[561px] pt-20 bg-amber-50 z-[1] absolute"></div>
-            </div>
             <div className="flex w-full h-full  items-center  pt-5">
               <div>
                 <img
@@ -52,6 +47,7 @@ export const HeroSection = (props) => {
                   name={movie.title}
                   rank={movie.vote_average}
                   description={movie.overview}
+                  movieId={movie.id}
                 />
                 <div>
                   <button className="bg-[#F4F4F5] flex justify-center items-center w-[40px] h-[40px] text-[16px] rounded-[100%] ">
