@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { HeroSlide } from "../_components/HeroSlide";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -13,23 +13,40 @@ const options = {
   },
 };
 export const ClickedMovie = (props) => {
+  const [isShow, setIsShow] = useState(false);
+
+  const handleWatchTrailerButton = () => {
+    setIsShow(true);
+  };
+  const handleWatchTrailerButton2 = () => {
+    setIsShow(false);
+  };
   const param = useParams();
   const { id } = param;
 
   const apiLink = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
   const [movie, setMovie] = useState();
-  
+
   const apiLinkDirector = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
   const [director, setDirector] = useState();
-  
 
+  const apiLinkTrailer = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
+  const [trailer, setTrailer] = useState();
+
+  const getDataTrailer = async () => {
+    const dataTrailer = await fetch(apiLinkTrailer, options);
+    const jsonDataTrailer = await dataTrailer.json();
+    console.log("hey", jsonDataTrailer);
+
+    setTrailer(jsonDataTrailer);
+  };
   const getData = async () => {
     const data = await fetch(apiLink, options);
     const jsonData = await data.json();
-    console.log("sadada",jsonData);
+    console.log("sadada", jsonData);
     setMovie(jsonData);
   };
-  
+
   const getDataDirector = async () => {
     const dataDirector = await fetch(apiLinkDirector, options);
     const jsonDataDirector = await dataDirector.json();
@@ -41,6 +58,7 @@ export const ClickedMovie = (props) => {
   useEffect(() => {
     getData();
     getDataDirector();
+    getDataTrailer();
   }, [id]);
 
   if (!id) {
@@ -49,6 +67,22 @@ export const ClickedMovie = (props) => {
 
   return (
     <div>
+      {isShow && (
+        <div className="absolute left-[14%] top-[17%]">
+          <div className="">
+            <div
+              className="text-2xl rounded-[100%] cursor-pointer border-[1px] left-[95%] top-[1%] absolute bg-amber-50 w-[40px] text-red-600 flex justify-center z-20"
+              onClick={handleWatchTrailerButton2}
+            >
+              x
+            </div>
+            <iframe
+              className="w-[997px] h-[561px] relative z-[10]"
+              src={`https://youtube.com/embed/${trailer?.results[2].key}`}
+            ></iframe>
+          </div>
+        </div>
+      )}
       <div className="w-full pt-[52px] flex justify-between pl-45 pr-45">
         <div className="">
           <div className="h-[40px] text-[36px]">{movie?.original_title} </div>
@@ -83,7 +117,10 @@ export const ClickedMovie = (props) => {
             src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           />
           <h1 className="w-full flex absolute items-center  pb-6 pl-6 gap-2 text-white">
-            <button className="w-10 h-10 rounded-[100%] bg-white flex justify-center items-center">
+            <button
+              className="w-10 h-10 rounded-[100%] bg-white flex justify-center items-center"
+              onClick={handleWatchTrailerButton}
+            >
               <img className="w-3" src="/PlayVector.svg" />
             </button>
             Play trailer
@@ -93,7 +130,10 @@ export const ClickedMovie = (props) => {
       <div className="w-full flex pl-45 pr-45  pt-[32px] gap-[12px]">
         {movie?.genres.map((genre, index) => {
           return (
-            <button key={index} className="text-[#09090B] border-1 rounded-full pl-[10px] pr-[10px]">
+            <button
+              key={index}
+              className="text-[#09090B] border-1 rounded-full pl-[10px] pr-[10px]"
+            >
               {genre.name}
             </button>
           );
@@ -105,26 +145,29 @@ export const ClickedMovie = (props) => {
       <div className="w-full flex pl-45 pr-45  pt-[20px] gap-[12px]">
         <h1 className="font-bold text-4">
           Director
-          <span className="px-[120px] font-thin">{director?.crew[0]?.name}</span>
+          <span className="px-[120px] font-thin">
+            {director?.crew[0]?.name}
+          </span>
         </h1>
       </div>
       <div className="w-full flex pl-45 pr-45  pt-[20px] gap-[12px]">
         <h1 className="font-bold text-4 ">
           Writers
-          <span className="px-[120px] font-thin">{director?.crew[1]?.name}</span>
+          <span className="px-[120px] font-thin">
+            {director?.crew[1]?.name}
+          </span>
         </h1>
       </div>
       <div className="w-full flex pl-45 pr-45  pt-[20px] gap-[12px]">
         <h1 className="font-bold text-4 ">
           Stars
-          <span className="px-[120px] font-thin">{director?.crew[2]?.name}</span>
+          <span className="px-[120px] font-thin">
+            {director?.crew[2]?.name}
+          </span>
         </h1>
       </div>
-      
-      <div>
-    
-      
-      </div>
+
+      <div></div>
     </div>
   );
 };

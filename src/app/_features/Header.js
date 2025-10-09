@@ -16,7 +16,7 @@ export const Header = (props) => {
   };
   return (
     <div>
-      <div className="flex w-full justify-between pt-3 pl-20 pr-20 relative">
+      <div className="flex w-full justify-between pt-6 pl-20 pr-20 pb-6 relative">
         <div
           className="flex gap-2 text-[16px] cursor-pointer"
           onClick={handleMovieZButton}

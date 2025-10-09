@@ -15,12 +15,14 @@ const options = {
 export const HeroSection = (props) => {
   const apiLink =
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-  const [slide, setSlide] = useState(1);
+  const [slide, setSlide] = useState(0);
   const ClickBackButton = () => {
-    if (slide === 1) {
-      return slide + 1;
-    } else {
-      setSlide(slide - 1);
+    setSlide(slide + 1440);
+    console.log("slideshoo", slide);
+    if (slide === 2880) {
+      setSlide(slide - 2880);
+
+      return slide;
     }
   };
   const [movies, setMovies] = useState([]);
@@ -31,25 +33,27 @@ export const HeroSection = (props) => {
 
     setMovies(jsonData.results);
   };
+  console.log("sdada", movies);
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
-    <div>
-      {slide &&
-        movies.slice(0, slide).map((movie, index) => {
+    <div className="w-[100%] overflow-hidden ">
+      <div className={`flex w-[300%] h-full -translate-x-[${slide}px]`}>
+        {movies.slice(0, 3).map((movie, index) => {
           return (
-            <div key={index} className="relative">
-              <div className="flex w-full h-full  items-center  pt-5">
+            <div key={index} className="flex relative w-full h-full">
+              <div className="flex items-center">
                 <div>
                   <img
-                    className="w-[1440px] h-full z-[-1] relative "
+                    className="w-full h-full z-[-1] relative "
                     src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                   />
                 </div>
 
-                <div className="w-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
+                <div className="w-full h-full flex justify-between absolute items-center pl-[140px] pr-[44px] text-amber-50">
                   <HeroSlide
                     key={index}
                     name={movie.title}
@@ -60,7 +64,7 @@ export const HeroSection = (props) => {
                   <div>
                     <button
                       onClick={ClickBackButton}
-                      className="bg-[#F4F4F5] flex justify-center items-center w-[40px] h-[40px] text-[16px] rounded-[100%] cursor-pointer"
+                      className="bg-[#F4F4F5] flex justify-center items-center w-[40px] h-[40px] text-[16px] rounded-[100%] cursor-pointer z-99999"
                     >
                       <img
                         className="text-[16px] w-[4px] h-[8px]"
@@ -68,16 +72,32 @@ export const HeroSection = (props) => {
                       />
                     </button>
                   </div>
-                </div>
-                <div className="w-full h-full flex items-end justify-center gap-2 absolute z-[-1] pb-[37px]">
-                  <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
-                  <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
-                  <button className="w-[8px] h-[8px] bg-white rounded-[100%]"></button>
+                  <div className="w-10 h-2 flex justify-between absolute left-[50%] top-[92%]">
+                    <button
+                      className={`w-[8px] h-[8px] rounded-[100%] ${
+                        slide === 0 ? "bg-gray-500" : "bg-white"
+                      }`}
+                      onClick={() => setSlide(0)}
+                    ></button>
+                    <button
+                      className={`w-[8px] h-[8px] z-[1]  rounded-[100%] ${
+                        slide === 1440 ? "bg-gray-500" : "bg-white"
+                      }`}
+                      onClick={() => setSlide(1440)}
+                    ></button>
+                    <button
+                      className={`w-[8px] h-[8px] z-[1]  rounded-[100%] ${
+                        slide === 2880 ? "bg-gray-500" : "bg-white"
+                      }`}
+                      onClick={() => setSlide(2880)}
+                    ></button>
+                  </div>
                 </div>
               </div>
             </div>
           );
         })}
+      </div>
     </div>
   );
 };

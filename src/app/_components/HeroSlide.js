@@ -35,18 +35,18 @@ export const HeroSlide = (props) => {
   return (
     <div className="">
       {isShow && (
-        <div className="">
-          <div className=" w-full flex-col justify-end ">
-            <iframe
-              className="w-[997px] h-[561px] absolute z-[10]"
-              src={`https://youtube.com/embed/${trailer?.results[2].key}`}
-            ></iframe>
+        <div className="absolute left-[16%] bottom-[15%]">
+          <div className="">
             <div
-              className="text-2xl rounded-[100%] border-[1px]  bg-amber-50 w-[40px] text-red-600 flex justify-center absolute z-20"
+              className="text-2xl rounded-[100%] cursor-pointer border-[1px] left-[95%] top-[1%] absolute bg-amber-50 w-[40px] text-red-600 flex justify-center z-20"
               onClick={handleWatchTrailerButton2}
             >
               x
             </div>
+            <iframe
+              className="w-[997px] h-[561px] relative z-[10]"
+              src={`https://youtube.com/embed/${trailer?.results[2].key}`}
+            ></iframe>
           </div>
         </div>
       )}
