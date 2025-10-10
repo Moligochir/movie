@@ -25,8 +25,9 @@ export const HeroSlide = (props) => {
   const getData = async () => {
     const dataTrailer = await fetch(apiLinkTrailer, options);
     const jsonDataTrailer = await dataTrailer.json();
-    console.log("hey", jsonDataTrailer);
-
+    
+    console.log("eneyuwe", jsonDataTrailer);
+    
     setTrailer(jsonDataTrailer);
   };
   useEffect(() => {
@@ -45,12 +46,12 @@ export const HeroSlide = (props) => {
             </div>
             <iframe
               className="w-[997px] h-[561px] relative z-[10]"
-              src={`https://youtube.com/embed/${trailer?.results[2].key}`}
+              src={`https://youtube.com/embed/${trailer?.results[0].key}`}
             ></iframe>
           </div>
         </div>
       )}
-      <div className="w-full h-full">
+      <div className="w-full h-full"> 
         <h1 className="text-[24px]">Now Playing:</h1>
         <h2 className="text-[40px]"> {name}</h2>
 

@@ -21,9 +21,7 @@ export const HeroSection = (props) => {
     console.log("slideshoo", slide);
     if (slide === 2880) {
       setSlide(slide - 2880);
-
-      return slide;
-    }
+    } return slide
   };
   const [movies, setMovies] = useState([]);
   const getData = async () => {

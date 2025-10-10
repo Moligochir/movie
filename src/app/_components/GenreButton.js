@@ -1,8 +1,6 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
-import { GenreMovieList } from "../_features/GenreMovieList";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const options = {
@@ -16,7 +14,7 @@ const options = {
 export const GenreButton = () => {
   const [genre, setGenre] = useState([]);
   const apiLink = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
-  const router = useRouter();
+  
 
   const getData = async () => {
     const data = await fetch(apiLink, options);

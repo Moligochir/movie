@@ -1,5 +1,5 @@
 "use client";
-import { HeroSlide } from "../_components/HeroSlide";
+
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { MovieCardDb } from "../_components/MovieCardDb";
@@ -23,15 +23,30 @@ export const ClickedMovie = (props) => {
   };
   const param = useParams();
   const { id } = param;
-
+  console.log(id,"paaah");
+  
   const apiLink = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
   const [movie, setMovie] = useState();
-
+  const apiLinkTrailer = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
+  const [trailer, setTrailer] = useState();
   const apiLinkDirector = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
   const [director, setDirector] = useState();
 
-  const apiLinkTrailer = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
-  const [trailer, setTrailer] = useState();
+  const getData = async () => {
+    const data = await fetch(apiLink, options);
+    const jsonData = await data.json();
+    console.log("heyMov", jsonData.id);
+    
+    setMovie(jsonData);
+  };
+  
+  const getDataDirector = async () => {
+    const dataDirector = await fetch(apiLinkDirector, options);
+    const jsonDataDirector = await dataDirector.json();
+    console.log(jsonDataDirector);
+
+    setDirector(jsonDataDirector);
+  };
 
   const getDataTrailer = async () => {
     const dataTrailer = await fetch(apiLinkTrailer, options);
@@ -40,20 +55,9 @@ export const ClickedMovie = (props) => {
 
     setTrailer(jsonDataTrailer);
   };
-  const getData = async () => {
-    const data = await fetch(apiLink, options);
-    const jsonData = await data.json();
-    console.log("sadada", jsonData);
-    setMovie(jsonData);
-  };
+  
 
-  const getDataDirector = async () => {
-    const dataDirector = await fetch(apiLinkDirector, options);
-    const jsonDataDirector = await dataDirector.json();
-    console.log(jsonDataDirector);
-
-    setDirector(jsonDataDirector);
-  };
+  
 
   useEffect(() => {
     getData();
@@ -78,7 +82,7 @@ export const ClickedMovie = (props) => {
             </div>
             <iframe
               className="w-[997px] h-[561px] relative z-[10]"
-              src={`https://youtube.com/embed/${trailer?.results[2].key}`}
+              src={`https://youtube.com/embed/${trailer?.results[0].key}`}
             ></iframe>
           </div>
         </div>
