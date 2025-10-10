@@ -19,9 +19,10 @@ export const HeroSection = (props) => {
   const ClickBackButton = () => {
     setSlide(slide + 1440);
     console.log("slideshoo", slide);
-    if (slide === 2880) {
+    if (slide == 2880) {
       setSlide(slide - 2880);
-    } return slide
+    }
+    return slide;
   };
   const [movies, setMovies] = useState([]);
   const getData = async () => {

@@ -26,7 +26,7 @@ export const TopRatedMoviesList = ({ isDetails }) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
   return (
     <div className="pt-[52px] pl-20 pr-20 w-full h-full ">
       <div className="flex w-full h-[32px] justify-between ">
@@ -51,19 +51,25 @@ export const TopRatedMoviesList = ({ isDetails }) => {
             />
           );
         })}
-        </div>
+      </div>
       <div className={`${!isDetails ? "hidden" : ""}`}>
         <div className="flex justify-end w-full text-[14px] pt-[32px] ">
-        
-        
-        <div className="flex gap-1 ">
-        <button className="flex items-center gap-2 text-5 px-[16px] py-[8px]"><img className="w-1 h-2" src="/LeftVector.svg"/>Previous</button>
-        <button className="flex items-center border-[1px] border-[#E4E4E7] px-[16px] py-[10px]">1</button>
-        <button className="flex items-center px-[16px] py-[10px]">2</button>
-        <button className="flex items-center px-[16px] py-[10px]">3</button>
-        <button className="flex items-center px-[16px] py-[10px] gap-2">Next<img className="w-1 h-2" src="/RightVector.svg"/></button>
+          <div className="flex gap-1 ">
+            <button className="flex items-center gap-2 text-5 px-[16px] py-[8px]">
+              <img className="w-1 h-2" src="/LeftVector.svg" />
+              Previous
+            </button>
+            <button className="flex items-center border-[1px] border-[#E4E4E7] px-[16px] py-[10px]">
+              1
+            </button>
+            <button className="flex items-center px-[16px] py-[10px]">2</button>
+            <button className="flex items-center px-[16px] py-[10px]">3</button>
+            <button className="flex items-center px-[16px] py-[10px] gap-2">
+              Next
+              <img className="w-1 h-2" src="/RightVector.svg" />
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );

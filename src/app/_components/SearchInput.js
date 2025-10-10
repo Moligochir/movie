@@ -1,53 +1,40 @@
-"use client"
-import { useEffect, useState } from "react";
+export const SearchInput = ({ search }) => {
+  return (
+    <div className="w-full h-full left-[40%] top-[80%] absolute z-[20]">
+      {search.map((movie, index) => {
+        return (
+          <div
+            key={index}
+            className="w-[577px] bg-white border-1 border-[#E4E4E7] p-3"
+          >
+            <div className="w-full flex ">
+              <div className="w-[67px]">
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  className="h-[100px] rounded-t-[6px] w-[67px]"
+                />
+              </div>
 
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzZiMzEwNzJlZDg5ODcwMzQxM2Y0NzkyYzZjZTdjYyIsIm5iZiI6MTczODAyNjY5NS44NCwic3ViIjoiNjc5ODJlYzc3MDJmNDkyZjQ3OGY2OGUwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.k4OF9yGrhA2gZ4VKCH7KLnNBB2LIf1Quo9c3lGF6toE",
-  },
+              <div className="w-full pl-3 pr-2">
+                <h1 className="flex h-[28px] text-[20px]">{movie.title}</h1>
+                <div className="flex h-[14px] text-[14px]">
+                  <img className="h-[14px]" src="/star.svg" />
+                  <span className="text-[#09090B]">{movie.vote_average}</span>
+                  /10
+                </div>
+                <div className="flex justify-between p-2 h-[36px]">
+                  <h1 className="w-full">{movie.release_date}</h1>
+                  <button className="h-[36px] w-full text-[14px] flex gap-2  justify-end items-center">
+                    see more
+                    <img className="h-[10px] w-[10px]" src="/rightArrow.svg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <hr className="border-1 border-[#E4E4E7]"></hr>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
-export const SearchInput = () => {
-    const [search, setSearch] = useState()
-    const apiLink = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
-
-    const getData = async () => {
-        const data = await fetch(apiLink, options);
-        const jsonData = await data.json();
-        setSearch(jsonData.results);
-      };
-        useEffect(() => {
-        getData();
-      }, []);
-    
- return (
-    <div className="w-full h-full flex justify-center absolute">
-      <div className="w-[577px] flex border-1">
-        <div className="">
-            <img
-            src={"/MovieWicked.svg"}
-            className="h-[100px] rounded-t-[6px] w-[67px]"
-        />
-      </div>
-            
-          
-          <div className="w-full">
-                <h1 className="flex h-[28px] text-[20px]">wicked</h1>
-            <div className="flex h-[14px] text-[14px]">
-                <img className="h-[14px]" src="/star.svg" />
-                <span className="text-[#09090B]">7</span>/10
-            </div>
-            <div className="flex justify-between h-[36px]"><h1 className="w-full">2024</h1>
-                <button className="h-[36px] w-full text-[14px] flex gap-2 items-center rounded-[6px]">
-              see more <img className="h-[10px]" src="/rightArrow.svg" />
-            </button></div>
-            </div>
-          
-        
-    
-      
-    
-      </div>
-    </div>)};

@@ -2,10 +2,43 @@
 
 import { useRouter } from "next/navigation";
 import { GenreButton } from "../_components/GenreButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { SearchInput } from "../_components/SearchInput";
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzZiMzEwNzJlZDg5ODcwMzQxM2Y0NzkyYzZjZTdjYyIsIm5iZiI6MTczODAyNjY5NS44NCwic3ViIjoiNjc5ODJlYzc3MDJmNDkyZjQ3OGY2OGUwIiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.k4OF9yGrhA2gZ4VKCH7KLnNBB2LIf1Quo9c3lGF6toE",
+  },
+};
 
 export const Header = (props) => {
   const [isShow, setIsShow] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearchInput = (event) => {
+    setInputValue(event.target.value);
+    console.log("Input value is now:", event.target.value);
+  };
+  const apiLink = `https://api.themoviedb.org/3/search/movie?query=${inputValue}&language=en-US&page=1`;
+
+  const getData = async () => {
+    setLoading(true);
+    const data = await fetch(apiLink, options);
+    const jsonData = await data.json();
+    console.log("search data", jsonData);
+    setSearch(jsonData.results);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getData();
+  }, [inputValue]);
 
   const handleGenreButton = () => {
     setIsShow(!isShow);
@@ -40,7 +73,14 @@ export const Header = (props) => {
           <div>
             <div className="flex gap-2 text-[#09090B] w-[379px] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
               <img className="w-[16px] text-[#09090B]" src="/search.svg" />
-              <input className="text-[#x09090B]" placeholder="Search.."></input>
+              <input
+                onChange={handleSearchInput}
+                type="text"
+                value={inputValue}
+                className="text-[#x09090B]"
+                placeholder="Search.."
+              ></input>
+              {inputValue.length > 0 && <SearchInput search={search} />}
             </div>
           </div>
         </div>

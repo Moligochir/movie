@@ -10,13 +10,13 @@ import { SearchInput } from "./_components/SearchInput";
 export default function Home() {
   return (
     <div className="w-[1440px]">
-      {/* <Header />
+      <Header />
       <HeroSection />
       <UpcomingMoviesList />
       <PopularMoviesList />
       <TopRatedMoviesList />
-      <Footer /> */}
-      <SearchInput/>
+      <Footer />
+      {/* <SearchInput /> */}
     </div>
   );
 }
