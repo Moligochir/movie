@@ -80,7 +80,7 @@ export const Header = (props) => {
                 className="text-[#x09090B]"
                 placeholder="Search.."
               ></input>
-              {inputValue.length > 0 && <SearchInput search={search} />}
+              {inputValue.length > 0 && <SearchInput value={inputValue} search={search} />}
             </div>
           </div>
         </div>
