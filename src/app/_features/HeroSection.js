@@ -1,5 +1,5 @@
 "use client";
-import { useParams } from "next/navigation";
+
 import { HeroSlide } from "../_components/HeroSlide";
 import { useEffect, useState } from "react";
 
@@ -16,11 +16,12 @@ export const HeroSection = (props) => {
   const apiLink =
     "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
   const [slide, setSlide] = useState(0);
+
   const ClickBackButton = () => {
     setSlide(slide + 1440);
     console.log("slideshoo", slide);
     if (slide == 2880) {
-      setSlide(slide - 2880);
+      setSlide(slide - slide);
     }
     return slide;
   };
@@ -40,7 +41,9 @@ export const HeroSection = (props) => {
 
   return (
     <div className="w-[100%] overflow-hidden ">
-      <div className={`flex w-[300%] h-full -translate-x-[${slide}px]`}>
+      <div
+        className={`flex w-[4320px] h-full -translate-x-[${Number(slide)}px]`}
+      >
         {movies.slice(0, 3).map((movie, index) => {
           return (
             <div key={index} className="flex relative w-full h-full">

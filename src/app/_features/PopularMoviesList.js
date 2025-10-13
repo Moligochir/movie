@@ -2,6 +2,7 @@
 import { MovieCardDb } from "../_components/MovieCardDb";
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
+import { NextPageButton } from "./NextPageButton";
 
 const options = {
   method: "GET",
@@ -16,10 +17,13 @@ export const PopularMoviesList = ({ isDetails }) => {
   const [page, setPage] = useState(1);
   const apiLink = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
   const [movies, setMovies] = useState([]);
+  const [result, setResults] = useState([]);
+
   const getData = async () => {
     const data = await fetch(apiLink, options);
     const jsonData = await data.json();
     setMovies(jsonData.results);
+    setResults(jsonData.total_pages);
   };
 
   useEffect(() => {
@@ -28,7 +32,7 @@ export const PopularMoviesList = ({ isDetails }) => {
   return (
     <div className="pt-[52px] pl-20 pr-20 w-full h-full ">
       <div className="flex w-full h-[32px] justify-between ">
-        <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start bg-[#F4F4F5]">
+        <div className="flex w-[250px] text-[30px] rounded-[6px] items-center  justify-start">
           Popular
         </div>
         <Link href={"/popular"} className={`${isDetails ? "hidden" : ""}`}>
@@ -51,18 +55,8 @@ export const PopularMoviesList = ({ isDetails }) => {
         })}
       </div>
       <div className={`${!isDetails ? "hidden" : ""}`}>
-        <div className="flex justify-end w-full text-[14px] pt-[32px] ">
-        
-        
-        <div className="flex gap-1 ">
-        <button className="flex items-center gap-2 text-5 px-[16px] py-[8px]"><img className="w-1 h-2" src="/LeftVector.svg"/>Previous</button>
-        <button className="flex items-center border-[1px] border-[#E4E4E7] px-[16px] py-[10px]">1</button>
-        <button className="flex items-center px-[16px] py-[10px]">2</button>
-        <button className="flex items-center px-[16px] py-[10px]">3</button>
-        <button className="flex items-center px-[16px] py-[10px] gap-2">Next<img className="w-1 h-2" src="/RightVector.svg"/></button>
-        </div>
+        <NextPageButton page={page} setPage={setPage} result={result} />
       </div>
-    </div>
     </div>
   );
 };
