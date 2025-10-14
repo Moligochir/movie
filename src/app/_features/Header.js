@@ -57,7 +57,7 @@ export const Header = (props) => {
           <img className="w-[20px] " src="/movieZ.svg " />
           <button className="text-[#4338CA] cursor-pointer">MovieZ</button>
         </div>
-        <div className="flex gap-6 text-[14px] ">
+        <div className="flex gap-6 text-[14px]">
           <div className=" text-[#18181B] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
             <div>
               <div

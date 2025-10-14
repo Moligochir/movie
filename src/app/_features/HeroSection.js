@@ -18,12 +18,10 @@ export const HeroSection = (props) => {
   const [slide, setSlide] = useState(0);
 
   const ClickBackButton = () => {
-    setSlide(slide + 1440);
-    console.log("slideshoo", slide);
-    if (slide == 2880) {
-      setSlide(slide - slide);
+    setSlide(slide + 1);
+    if (slide + 1 > 2) {
+      setSlide(0);
     }
-    return slide;
   };
   const [movies, setMovies] = useState([]);
   const getData = async () => {
@@ -41,9 +39,7 @@ export const HeroSection = (props) => {
 
   return (
     <div className="w-[100%] overflow-hidden ">
-      <div
-        className={`flex w-[4320px] h-full -translate-x-[${Number(slide)}px]`}
-      >
+      <div className={`flex w-[300%] h-full -translate-x-[${slide * 1440}px]`}>
         {movies.slice(0, 3).map((movie, index) => {
           return (
             <div key={index} className="flex relative w-full h-full">
@@ -83,15 +79,15 @@ export const HeroSection = (props) => {
                     ></button>
                     <button
                       className={`w-[8px] h-[8px] z-[1]  rounded-[100%] ${
-                        slide === 1440 ? "bg-gray-500" : "bg-white"
+                        slide === 1 ? "bg-gray-500" : "bg-white"
                       }`}
-                      onClick={() => setSlide(1440)}
+                      onClick={() => setSlide(1)}
                     ></button>
                     <button
                       className={`w-[8px] h-[8px] z-[1]  rounded-[100%] ${
-                        slide === 2880 ? "bg-gray-500" : "bg-white"
+                        slide === 2 ? "bg-gray-500" : "bg-white"
                       }`}
-                      onClick={() => setSlide(2880)}
+                      onClick={() => setSlide(2)}
                     ></button>
                   </div>
                 </div>

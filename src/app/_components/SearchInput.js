@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const SearchInput = ({ search, value }) => {
   console.log(value, "inputValue");
   return (
@@ -35,9 +37,12 @@ export const SearchInput = ({ search, value }) => {
           </div>
         );
       })}
-      <div className=" w-[600px] bg-white text-[14px] font-semibold p-3 pb-5 rounded-b-[8px]">
-        See all results for "{value}"
-      </div>
+
+      <Link href={`/searchresults?name=${value}`}>
+        <div className=" w-[600px] bg-white text-[14px] font-semibold p-3 pb-5 rounded-b-[8px]">
+          See all results for "{value}"
+        </div>
+      </Link>
     </div>
   );
 };
