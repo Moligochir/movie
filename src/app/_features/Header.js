@@ -49,7 +49,7 @@ export const Header = (props) => {
   };
   return (
     <div>
-      <div className="flex w-full justify-between pt-6 pl-20 pr-20 pb-6 relative">
+      <div className="flex w-full justify-between pt-6 pl-20 pr-20 pb-6 max-sm:pl-5 max-sm:pr-5 relative">
         <div
           className="flex gap-2 text-[16px] cursor-pointer"
           onClick={handleMovieZButton}
@@ -61,7 +61,7 @@ export const Header = (props) => {
           <div className=" text-[#18181B] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
             <div>
               <div
-                className="flex gap-2 cursor-pointer"
+                className="flex gap-2 cursor-pointer max-sm:hidden"
                 onClick={handleGenreButton}
               >
                 <img className="w-[16px]" src="/Genre.svg" />
@@ -71,13 +71,13 @@ export const Header = (props) => {
             </div>
           </div>
           <div>
-            <div className="flex gap-2 text-[#09090B] w-[379px] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
+            <div className="flex max-sm:hidden gap-2 text-[#09090B] w-[379px] border border-[#E4E4E7] rounded-[8px] p-2 pl-4 pr-4">
               <img className="w-[16px] text-[#09090B]" src="/search.svg" />
               <input
                 onChange={handleSearchInput}
                 type="text"
                 value={inputValue}
-                className="text-[#x09090B]"
+                className="text-[#x09090B] "
                 placeholder="Search.."
               ></input>
               {inputValue.length > 0 && (

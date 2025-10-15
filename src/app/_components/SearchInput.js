@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const SearchInput = ({ search, value }) => {
-  console.log(value, "inputValue");
+  console.log(search, "searchValue");
   return (
     <div className="w-full h-[500%] left-[40%] top-[80%] absolute z-[20]">
       {search.slice(0, 5).map((movie, index) => {
@@ -26,10 +26,15 @@ export const SearchInput = ({ search, value }) => {
                 </div>
                 <div className="flex justify-between p-3 h-[36px]">
                   <h1 className="w-full font-medium">{movie.release_date}</h1>
-                  <button className="h-[36px] w-full text-[14px] flex gap-2  justify-end items-center">
-                    see more
-                    <img className="h-[10px] w-[10px]" src="/rightArrow.svg" />
-                  </button>
+                  <Link className="w-full" href={`/movie-detail/${movie.id}`}>
+                    <button className="h-[36px] w-full text-[14px] flex gap-2  justify-end items-center">
+                      see more
+                      <img
+                        className="h-[10px] w-[10px]"
+                        src="/rightArrow.svg"
+                      />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
